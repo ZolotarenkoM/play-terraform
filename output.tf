@@ -27,5 +27,5 @@ output "instance_ip" {
 }
 
 output "aws_load_balancer_dns_name" {
-  value = aws_elb.elb-mzol.dns_name
+  value = aws_lb.alb_mzol.dns_name
 }
