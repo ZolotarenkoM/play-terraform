@@ -7,7 +7,7 @@ resource "aws_lb" "alb_mzol" {
   enable_cross_zone_load_balancing = true
   idle_timeout                     = 120
 
-  depends_on = [aws_security_group.ssh_http]
+  depends_on = [aws_security_group.ssh_http, aws_lb_target_group.target_group_mzol]
 
   tags = {
     Name = "mzol-terraform-alb"
@@ -26,7 +26,7 @@ resource "aws_lb_target_group" "target_group_mzol" {
     matcher             = "200"
     healthy_threshold   = 2
     unhealthy_threshold = 2
-    timeout             = 3
+    timeout             = 5
     interval            = 10
   }
   depends_on = [aws_security_group.ssh_http]

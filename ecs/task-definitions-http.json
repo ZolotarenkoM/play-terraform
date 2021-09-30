@@ -1,0 +1,22 @@
+[
+  {
+    "name": "mzol_app1",
+    "image": "434365573654.dkr.ecr.us-east-1.amazonaws.com/my-app1:1",
+    "cpu": 0,
+    "memory": 256,
+    "links": [],
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 0,
+        "protocol": "tcp"
+      }
+    ],
+    "essential": true,
+    "entryPoint": [],
+    "command": [],
+    "environment": [],
+    "mountPoints": [],
+    "volumesFrom": []
+  }
+]

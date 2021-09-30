@@ -14,6 +14,10 @@ output "aws_availability_zones" {
   value = data.aws_availability_zones.default.names
 }
 
+output "aws_subnet_ids" {
+  value = data.aws_subnet_ids.default.ids
+}
+
 output "aws_caller_identity" {
   value = data.aws_caller_identity.default.account_id
 }
