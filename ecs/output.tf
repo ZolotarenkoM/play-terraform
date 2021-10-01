@@ -22,13 +22,9 @@ output "aws_caller_identity" {
   value = data.aws_caller_identity.default.account_id
 }
 
-//output "instance_id" {
-//  value = data.aws_instances.default.ids
-//}
-
-//output "aws_load_balancer_dns_name" {
-//  value = aws_lb.alb_mzol.dns_name
-//}
+output "aws_load_balancer_dns_name" {
+  value = aws_lb.alb_mzol.dns_name
+}
 
 output "ecs_cluster_name" {
   value = module.app_ecs_cluster.ecs_cluster_name
@@ -36,4 +32,8 @@ output "ecs_cluster_name" {
 
 output "ecs_cluster_arn" {
   value = module.app_ecs_cluster.ecs_cluster_arn
+}
+
+output "ecs-service-role-arn" {
+  value = aws_iam_role.ecs_service_role.arn
 }

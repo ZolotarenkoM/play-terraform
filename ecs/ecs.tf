@@ -32,17 +32,17 @@ resource "aws_ecs_task_definition" "mzol_app1" {
 }
 
 resource "aws_ecs_service" "mzol_app1" {
-  name = "mzol_app1"
-  //cluster         = data.app_ecs_cluster.id
-  task_definition = aws_ecs_task_definition.mzol_app1.arn
-  //    iam_role = "${aws_iam_role.ecs_service_role.arn}"
-  desired_count = 1
-  //    depends_on = ["aws_iam_role_policy.ecs_service_role_policy"]
+  name                               = "mzol_app1"
+  cluster                            = module.app_ecs_cluster.ecs_cluster_arn
+  task_definition                    = aws_ecs_task_definition.mzol_app1.arn
+  iam_role                           = aws_iam_role.ecs_service_role.arn
+  desired_count                      = 1
   deployment_maximum_percent         = 100
   deployment_minimum_healthy_percent = 0
   load_balancer {
-    elb_name       = aws_lb.alb_mzol.id
-    container_name = "mzol_app1-runner"
-    container_port = 80
+    target_group_arn = aws_lb_target_group.target_group_mzol.arn
+    container_name   = "mzol_app1"
+    container_port   = 80
   }
+  depends_on = [aws_iam_role.ecs_service_role]
 }
