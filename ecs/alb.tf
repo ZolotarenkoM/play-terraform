@@ -9,7 +9,7 @@ resource "aws_lb" "alb_mzol" {
 
   depends_on = [aws_security_group.http, aws_lb_target_group.target_group_mzol]
 
-  tags = merge(var.tags, { Name = "ALB-ECS" })
+  tags = merge(var.tags, { Name = "ALB-ECS-${var.tags["env"]}" })
 }
 
 resource "aws_lb_target_group" "target_group_mzol" {
