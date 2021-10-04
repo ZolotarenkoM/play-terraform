@@ -21,7 +21,5 @@ resource "aws_security_group" "http" {
 
   //  depends_on = [aws_security_group.https]
 
-  tags = {
-    Name = "allow_http"
-  }
+  tags = var.tags
 }

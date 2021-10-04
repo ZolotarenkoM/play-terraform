@@ -16,6 +16,7 @@ resource "aws_iam_role" "ecs_service_role" {
   ]
 }
 EOF
+  tags               = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "ecs-service-attachment" {

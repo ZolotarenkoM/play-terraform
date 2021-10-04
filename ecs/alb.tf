@@ -1,5 +1,5 @@
 resource "aws_lb" "alb_mzol" {
-  name                             = "alb-mzol"
+  name                             = var.load_balancer_name
   internal                         = false
   load_balancer_type               = "application"
   security_groups                  = [aws_security_group.http.id]
@@ -9,9 +9,7 @@ resource "aws_lb" "alb_mzol" {
 
   depends_on = [aws_security_group.http, aws_lb_target_group.target_group_mzol]
 
-  tags = {
-    Name = "mzol-terraform-alb"
-  }
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "target_group_mzol" {
@@ -30,6 +28,7 @@ resource "aws_lb_target_group" "target_group_mzol" {
     interval            = 10
   }
   depends_on = [aws_security_group.http]
+  tags       = var.tags
 }
 
 resource "aws_lb_listener" "http" {
