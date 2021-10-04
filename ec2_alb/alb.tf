@@ -8,7 +8,6 @@ resource "aws_lb" "alb_mzol" {
   idle_timeout                     = 120
 
   depends_on = [aws_security_group.ssh_http, aws_lb_target_group.target_group_mzol]
-
   tags = {
     Name = "mzol-terraform-alb"
   }

@@ -26,6 +26,10 @@ output "instance_id" {
   value = data.aws_instances.default.ids
 }
 
+output "instance_ami" {
+  value = data.aws_ami.latest_amazon2_ami.id
+}
+
 output "instance_ip" {
   value = data.aws_instances.default.public_ips
 }
