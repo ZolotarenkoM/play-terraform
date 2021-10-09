@@ -1,20 +1,6 @@
-module "app_ecs_cluster" {
-  source = "git::ssh://git@github.com/trussworks/terraform-aws-ecs-cluster.git?ref=v3.01"
-
-  name        = var.ecs_cluster_name
-  environment = "test"
-
-  image_id           = data.aws_ami.ecs_ami.image_id
-  instance_type      = var.ecs_instance_type
-  security_group_ids = [aws_security_group.http.id]
-
-  vpc_id           = data.aws_vpc.default.id
-  subnet_ids       = data.aws_subnet_ids.default.ids
-  min_size         = var.ecs_nodes_min
-  max_size         = var.ecs_nodes_max
-  desired_capacity = var.ecs_nodes_desired
+resource "aws_ecs_cluster" "app_ecs_cluster" {
+  name = var.ecs_cluster_name
 }
-
 
 resource "aws_ecs_task_definition" "mzol_app" {
   family                = "mzol_app"
@@ -24,7 +10,7 @@ resource "aws_ecs_task_definition" "mzol_app" {
 
 resource "aws_ecs_service" "mzol_app" {
   name                               = "mzol_app"
-  cluster                            = module.app_ecs_cluster.ecs_cluster_arn
+  cluster                            = aws_ecs_cluster.app_ecs_cluster.id
   task_definition                    = aws_ecs_task_definition.mzol_app.arn
   iam_role                           = aws_iam_role.ecs_service_role.arn
   desired_count                      = 1

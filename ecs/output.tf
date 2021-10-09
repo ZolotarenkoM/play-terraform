@@ -26,12 +26,8 @@ output "aws_load_balancer_dns_name" {
   value = aws_lb.alb_mzol.dns_name
 }
 
-output "ecs_cluster_name" {
-  value = module.app_ecs_cluster.ecs_cluster_name
-}
-
 output "ecs_cluster_arn" {
-  value = module.app_ecs_cluster.ecs_cluster_arn
+  value = aws_ecs_cluster.app_ecs_cluster.arn
 }
 
 output "ecs-service-role-arn" {

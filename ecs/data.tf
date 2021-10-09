@@ -1,7 +1,6 @@
 data "aws_ami" "ecs_ami" {
   most_recent = true
   owners      = ["amazon"]
-
   filter {
     name   = "name"
     values = ["amzn-ami-*-amazon-ecs-optimized"]
@@ -17,7 +16,3 @@ data "aws_subnet_ids" "default" {
 data "aws_availability_zones" "default" {}
 
 data "aws_caller_identity" "default" {}
-
-data "aws_ecs_cluster" "ecs-mongo" {
-  cluster_name = module.app_ecs_cluster.ecs_cluster_name
-}
